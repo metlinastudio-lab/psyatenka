@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Елизавета Метлина | Фотограф Самара</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Премиальные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#050505',
+                            dark: '#0a0a0a',
+                            gray: '#171717',
+                            light: '#f4f4f5',
+                            accent: '#d1cdc7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cormorant', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #f4f4f5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+        
+        ::selection {
+            background-color: #d1cdc7;
+            color: #050505;
+        }
+
+        /* --- ПАРАЛЛАКС ФОН --- */
+        #parallax-bg {
+            position: fixed;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            z-index: -1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d1cdc7' fill-opacity='0.03' fill-rule='evenodd'%3E%3C!-- Камера --%3E%3Cpath d='M30,20 h-4 l-2,-3 h-8 l-2,3 h-4 a2,2 0 0,0 -2,2 v14 a2,2 0 0,0 2,2 h20 a2,2 0 0,0 2,-2 v-14 a2,2 0 0,0 -2,-2 z m-10,14 a5,5 0 1,1 0,-10 a5,5 0 0,1 0,10 z' /%3E%3C!-- Пленка --%3E%3Cpath d='M80,70 v20 h10 v-20 h-10 z M75,70 h-5 v5 h5 v-5 z M75,80 h-5 v5 h5 v-5 z M75,90 h-5 v5 h5 v-5 z M95,70 h5 v5 h-5 v-5 z M95,80 h5 v5 h-5 v-5 z M95,90 h5 v5 h-5 v-5 z' /%3E%3C!-- Фотокарточка --%3E%3Cpath d='M30,80 h-16 a2,2 0 0,0 -2,2 v20 a2,2 0 0,0 2,2 h16 a2,2 0 0,0 2,-2 v-20 a2,2 0 0,0 -2,-2 z m-2,14 h-12 v-10 h12 v10 z' /%3E%3C!-- Диафрагма/Вспышка --%3E%3Cpath d='M90,20 l-4,6 h-6 l4,-6 l-4,-6 h6 l4,6 z' /%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 150px;
+            transition: transform 0.1s linear; 
+        }
+
+        /* Журнальный стиль для Hero-секции */
+        .hero-bg {
+            background-image: 
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 1)),
+                url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed;
+        }
+
+        /* Эффекты портфолио */
+        .editorial-img {
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), filter 1s ease;
+            filter: grayscale(100%) brightness(0.8);
+        }
+        .group:hover .editorial-img {
+            transform: scale(1.05);
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #171717; }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
+    </style>
+</head>
+<body class="selection:bg-brand-accent selection:text-brand-black">
+
+    <!-- ПАРАЛЛАКС ФОН -->
+    <div id="parallax-bg"></div>
+
+    <!-- Навигация -->
+    <nav class="fixed w-full z-50 mix-blend-difference py-6 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            
+            <!-- ЛОГОТИП -->
+            <div class="cursor-pointer flex items-center relative z-50" onclick="window.scrollTo(0,0)">
+                <img src="1000020188.png" alt="MEL Logo" class="h-10 md:h-12 w-auto invert contrast-125 mix-blend-screen opacity-90 hover:opacity-100 transition-opacity">
+            </div>
+
+            <!-- Меню для ПК -->
+            <div class="hidden md:flex items-center space-x-12 relative z-50">
+                <a href="#portfolio" class="text-[10px] uppercase tracking-[0.3em] text-white/70 hover:text-white transition duration-500">Портфолио</a>
+                <a href="#services" class="text-[10px] uppercase tracking-[0.3em] text-white/70 hover:text-white transition duration-500">Услуги</a>
+                <a href="#donate" class="text-[10px] uppercase tracking-[0.3em] text-white/70 hover:text-white transition duration-500">Поддержка</a>
+                <a href="#contact" class="text-[10px] uppercase tracking-[0.3em] text-brand-black bg-white/90 hover:bg-white px-6 py-3 transition duration-500">Записаться</a>
+            </div>
+            
+            <!-- Кнопка мобильного меню -->
+            <button class="md:hidden text-white relative z-50 p-2 focus:outline-none" id="mobile-menu-btn">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ПОЛНОЭКРАННОЕ МОБИЛЬНОЕ МЕНЮ (ИСПРАВЛЕНО) -->
+    <!-- flex изначально добавлен, скрытие работает через opacity и pointer-events -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-black/95 backdrop-blur-lg z-40 flex flex-col items-center justify-center space-y-10 opacity-0 pointer-events-none transition-all duration-300">
+        <a href="#portfolio" class="mobile-link text-lg uppercase tracking-[0.4em] text-white/70 hover:text-white transition duration-500 font-sans">Портфолио</a>
+        <a href="#services" class="mobile-link text-lg uppercase tracking-[0.4em] text-white/70 hover:text-white transition duration-500 font-sans">Услуги</a>
+        <a href="#donate" class="mobile-link text-lg uppercase tracking-[0.4em] text-white/70 hover:text-white transition duration-500 font-sans">Поддержка</a>
+        <a href="#contact" class="mobile-link mt-8 text-xs uppercase tracking-[0.3em] text-brand-black bg-white px-10 py-4 transition duration-500 font-sans">Записаться</a>
+    </div>
+
+    <!-- Главный экран -->
+    <section class="hero-bg h-screen flex flex-col justify-end pb-24 md:pb-32 relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div>
+                <p class="text-[10px] md:text-xs tracking-[0.4em] uppercase mb-4 md:mb-6 font-sans text-brand-accent/80">Фотограф • Самара</p>
+                <h1 class="text-6xl md:text-8xl lg:text-[140px] font-serif leading-[0.8] text-brand-light font-light tracking-tight">
+                    Елизавета <br> 
+                    <span class="italic text-brand-accent">Метлина</span>
+                </h1>
+            </div>
+            <div class="max-w-xs hidden md:block">
+                <p class="text-sm font-sans font-light text-brand-light/70 leading-relaxed mb-6">
+                    Сохраняю неуловимое. Журнальная, фэшн и неподвластная времени портретная фотография.
+                </p>
+                <a href="#portfolio" class="inline-flex items-center gap-4 text-[10px] uppercase tracking-[0.2em] font-sans text-white hover:text-brand-accent transition duration-500 group">
+                    Смотреть работы
+                    <div class="w-12 h-[1px] bg-white group-hover:bg-brand-accent group-hover:w-16 transition-all duration-500"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио (Editorial Grid) -->
+    <section id="portfolio" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+                <h2 class="text-4xl md:text-6xl font-serif text-brand-light leading-none">Избранные<br><span class="italic text-brand-accent">Архивы</span></h2>
+                <p class="text-[10px] uppercase tracking-[0.3em] font-sans text-brand-light/50">2023 — 2024</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+                <div class="md:col-span-8 overflow-hidden aspect-[4/3] group bg-brand-gray relative">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover editorial-img">
+                    <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-white text-sm font-sans tracking-widest uppercase">Фэшн портрет</span>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-4 overflow-hidden aspect-[3/4] group bg-brand-gray md:mt-24 relative">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover editorial-img">
+                    <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-white text-sm font-sans tracking-widest uppercase">Свадьба</span>
+                    </div>
+                </div>
+
+                <div class="md:col-span-5 overflow-hidden aspect-[3/4] group bg-brand-gray relative">
+                    <img src="https://images.unsplash.com/photo-1506804886640-379a04a37f5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover editorial-img">
+                    <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-white text-sm font-sans tracking-widest uppercase">Love Story</span>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 overflow-hidden aspect-[16/9] group bg-brand-gray md:mt-[-10%] relative">
+                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover editorial-img">
+                    <div class="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-white text-sm font-sans tracking-widest uppercase">Репортаж</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="py-32 bg-brand-dark/80 backdrop-blur-sm relative">
+        <div class="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-24">
+                <h2 class="text-4xl md:text-5xl font-serif text-brand-light mb-4">Услуги и цены</h2>
+                <div class="w-px h-12 bg-brand-accent/30 mx-auto"></div>
+            </div>
+
+            <div class="space-y-12">
+                <div class="group border-b border-white/10 pb-12 hover:border-brand-accent/50 transition duration-500">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-6">
+                        <h3 class="text-3xl font-serif text-brand-light group-hover:text-white transition">Индивидуальная</h3>
+                        <p class="text-brand-accent font-serif italic text-xl mt-2 md:mt-0">от 3 000 ₽ <span class="text-[10px] font-sans text-brand-light/40 not-italic uppercase tracking-widest">/ час</span></p>
+                    </div>
+                    <p class="text-sm font-sans font-light text-brand-light/50 max-w-2xl leading-relaxed">
+                        Съемка в студии или на локации. Помощь с концепцией, подбором образов и позированием. От 15 фотографий в глубокой журнальной ретуши и авторская цветокоррекция всех удачных кадров.
+                    </p>
+                </div>
+
+                <div class="group border-b border-white/10 pb-12 hover:border-brand-accent/50 transition duration-500 relative">
+                    <div class="absolute -left-8 top-2 hidden md:block opacity-0 group-hover:opacity-100 transition duration-500">
+                        <span class="text-[10px] font-sans text-brand-accent uppercase tracking-[0.2em] -rotate-90 block origin-left">Premium</span>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-6">
+                        <h3 class="text-3xl font-serif text-brand-light group-hover:text-white transition">Свадебный день</h3>
+                        <p class="text-brand-accent font-serif italic text-xl mt-2 md:mt-0">от 20 000 ₽ <span class="text-[10px] font-sans text-brand-light/40 not-italic uppercase tracking-widest">/ день</span></p>
+                    </div>
+                    <p class="text-sm font-sans font-light text-brand-light/50 max-w-2xl leading-relaxed">
+                        Репортаж и художественная постановка до 10 часов. От 400 обработанных кадров в закрытой эстетичной онлайн-галерее. Первые 20 фото (анонс) вы получаете на следующий день после торжества.
+                    </p>
+                </div>
+
+                <div class="group border-b border-white/10 pb-12 hover:border-brand-accent/50 transition duration-500">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-6">
+                        <h3 class="text-3xl font-serif text-brand-light group-hover:text-white transition">Love Story</h3>
+                        <p class="text-brand-accent font-serif italic text-xl mt-2 md:mt-0">от 4 500 ₽ <span class="text-[10px] font-sans text-brand-light/40 not-italic uppercase tracking-widest">/ 1.5 часа</span></p>
+                    </div>
+                    <p class="text-sm font-sans font-light text-brand-light/50 max-w-2xl leading-relaxed">
+                        Кинематографичная история о вас. Постановка кадра, мудборд и помощь на каждом этапе. В результате вы получаете 25 детально отретушированных кадров и все исходники в цветокоррекции.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Донаты -->
+    <section id="donate" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-6 md:px-12 text-center relative z-10">
+            <div class="inline-block p-1 bg-brand-gray/50 rounded-full mb-8 backdrop-blur-md">
+                <i data-lucide="coffee" class="w-5 h-5 text-brand-accent m-3"></i>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-serif text-brand-light mb-6">Кофе и Вдохновение</h2>
+            <p class="text-sm font-sans font-light text-brand-light/60 max-w-xl mx-auto leading-relaxed mb-10">
+                Искусство требует энергии. Если вам откликается мое творчество, вы можете поддержать меня символической суммой на чашку кофе. Это дает огромную мотивацию создавать новые некоммерческие арт-проекты.
+            </p>
+            
+            <button onclick="document.getElementById('donate-modal').classList.remove('hidden')" class="inline-flex items-center gap-3 border border-brand-accent/50 text-[10px] uppercase tracking-[0.2em] font-sans text-brand-light hover:bg-brand-accent hover:text-brand-black px-8 py-4 transition duration-500 group bg-brand-dark/50 backdrop-blur-md">
+                Поддержать автора
+                <i data-lucide="heart" class="w-4 h-4 transform group-hover:scale-110 transition duration-500"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Модальное окно для доната -->
+    <div id="donate-modal" class="hidden fixed inset-0 z-[200] bg-brand-black/90 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="bg-brand-dark border border-white/10 p-8 md:p-12 max-w-lg w-full relative">
+            <button onclick="document.getElementById('donate-modal').classList.add('hidden')" class="absolute top-6 right-6 text-white/50 hover:text-white transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h3 class="text-2xl font-serif text-brand-light mb-2">Поддержка творчества</h3>
+            <p class="text-xs font-sans font-light text-brand-light/50 mb-8">Перевод по номеру телефона (СБП)</p>
+            
+            <div class="bg-brand-gray p-6 mb-8 text-center flex flex-col items-center justify-center border border-white/5">
+                <span class="text-2xl font-sans font-light text-white tracking-wider mb-2">+7 (995) 832-56-71</span>
+                <span class="text-[10px] uppercase tracking-widest text-brand-accent/70">Елизавета М. (СБП)</span>
+            </div>
+
+            <div class="border-l-2 border-brand-accent/30 pl-4">
+                <p class="text-[9px] font-sans text-brand-light/40 leading-relaxed uppercase tracking-wide">
+                    Правовая информация:
+                </p>
+                <p class="text-[10px] font-sans text-brand-light/40 leading-relaxed mt-1">
+                    Перечисляя средства, вы соглашаетесь с тем, что данный перевод является добровольным даром (пожертвованием) на развитие творчества. Данный перевод не облагается НДС, не является оплатой фотоуслуг или иных коммерческих товаров согласно ст. 572 Гражданского кодекса РФ (Договор дарения). Возврат средств не предусмотрен.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Форма контактов -->
+    <section id="contact" class="py-32 bg-brand-dark relative border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16 relative z-10">
+            <div class="md:w-1/2">
+                <h2 class="text-4xl md:text-5xl font-serif text-brand-light mb-6">Давайте творить<br><span class="italic text-brand-accent">вместе</span></h2>
+                <p class="text-sm font-sans font-light text-brand-light/50 leading-relaxed mb-8">
+                    Оставьте свои данные, и я свяжусь с вами для обсуждения концепции нашей съемки.
+                </p>
+                
+                <div class="flex flex-col gap-5 text-brand-light/70">
+                    <a href="https://t.me/ps1vo" target="_blank" class="flex items-center gap-3 hover:text-brand-accent transition w-max">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                        <span class="text-xs uppercase tracking-widest font-sans">Telegram: @ps1vo</span>
+                    </a>
+                    <a href="tel:+79958325671" class="flex items-center gap-3 hover:text-brand-accent transition w-max">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        <span class="text-xs uppercase tracking-widest font-sans">+7 (995) 832-56-71</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:w-1/2">
+                <form id="tg-form" class="space-y-8 font-sans">
+                    <div>
+                        <input type="text" name="name" required class="w-full bg-transparent border-b border-brand-light/20 pb-3 text-white text-sm focus:outline-none focus:border-brand-accent transition placeholder-brand-light/30" placeholder="Ваше имя">
+                    </div>
+                    <div>
+                        <input type="tel" name="phone" required class="w-full bg-transparent border-b border-brand-light/20 pb-3 text-white text-sm focus:outline-none focus:border-brand-accent transition placeholder-brand-light/30" placeholder="Телефон">
+                    </div>
+                    <div>
+                        <select name="type" class="w-full bg-transparent border-b border-brand-light/20 pb-3 text-white/70 text-sm focus:outline-none focus:border-brand-accent transition appearance-none cursor-pointer">
+                            <option value="Индивидуальная" class="bg-brand-gray text-white">Индивидуальная съемка</option>
+                            <option value="Свадебная" class="bg-brand-gray text-white">Свадебная съемка</option>
+                            <option value="Love Story" class="bg-brand-gray text-white">Love Story</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-brand-light text-brand-black hover:bg-brand-accent font-medium py-4 uppercase tracking-[0.2em] text-[10px] transition-colors duration-500">
+                        Отправить запрос
+                    </button>
+                    
+                    <div id="success-message" class="hidden text-center p-4 border border-brand-accent/30 text-brand-accent mt-4">
+                        <p class="font-serif italic text-lg">Заявка принята.</p>
+                        <p class="text-[10px] font-sans uppercase tracking-widest mt-1">Ожидайте сообщения</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black py-16 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-12 md:gap-6">
+            
+            <div class="flex flex-col items-center md:items-start gap-5">
+                <img src="1000020200.png" alt="Фамильная подпись" class="h-28 object-contain opacity-80 hover:opacity-100 transition duration-500 brightness-75 hover:brightness-100 sepia-[.2] rounded shadow-2xl mix-blend-screen">
+                <span class="text-brand-light/40 text-[10px] uppercase tracking-[0.3em] font-sans">Фамильная фотостудия</span>
+            </div>
+
+            <div class="flex flex-col items-center md:items-end gap-4">
+                <a href="https://t.me/ps1vo" target="_blank" class="flex items-center gap-2 text-brand-light/70 hover:text-brand-accent transition">
+                    <span class="text-[10px] uppercase tracking-[0.2em] font-sans">@ps1vo</span>
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </a>
+                <a href="tel:+79958325671" class="flex items-center gap-2 text-brand-light/70 hover:text-brand-accent transition">
+                    <span class="text-[10px] uppercase tracking-[0.2em] font-sans">+7 995 832 56 71</span>
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                </a>
+                <p class="text-brand-light/20 text-[9px] uppercase tracking-[0.3em] font-sans mt-4">
+                    © 2024 Елизавета Метлина. Самара.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script>
+        // Инициализация иконок при первой загрузке
+        lucide.createIcons();
+
+        // --- ЛОГИКА МОБИЛЬНОГО МЕНЮ (ИСПРАВЛЕННАЯ) ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                // Показываем меню
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                
+                // ВАЖНО: Заменяем HTML кнопки целиком, чтобы не было ошибки null
+                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
+                
+                // Блокируем скролл фона
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                // Скрываем меню
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                
+                // ВАЖНО: Возвращаем иконку бургера
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+                
+                // Возвращаем скролл
+                document.body.style.overflow = ''; 
+            }
+            // Перерисовываем иконку после изменения HTML
+            lucide.createIcons();
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // Закрываем меню при клике на любую ссылку
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) toggleMenu();
+            });
+        });
+
+
+        // --- ПАРАЛЛАКС ЭФФЕКТ ДЛЯ ФОНА ---
+        const parallaxBg = document.getElementById('parallax-bg');
+        window.addEventListener('scroll', () => {
+            let scrollY = window.pageYOffset;
+            parallaxBg.style.transform = `translateY(${scrollY * -0.2}px)`; 
+        });
+
+        // 1. Анимация навбара
+        let lastScroll = 0;
+        const nav = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) {
+                nav.classList.remove('-translate-y-full');
+                return;
+            }
+            // Скрываем меню при скролле вниз только если мобильное меню закрыто
+            if (currentScroll > lastScroll && currentScroll > 50 && !isMenuOpen) {
+                nav.classList.add('-translate-y-full');
+            } else {
+                nav.classList.remove('-translate-y-full');
+                nav.classList.add('bg-brand-black/50', 'backdrop-blur-md', 'py-4');
+                nav.classList.remove('py-6');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // 3. ОТПРАВКА ФОРМЫ (Google Scripts)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/ВАШ_ИДЕНТИФИКАТОР/exec';
+        const form = document.getElementById('tg-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(GOOGLE_SCRIPT_URL.includes('ВАШ_ИДЕНТИФИКАТОР')) {
+                alert('Сначала вставьте ссылку на ваш Google Script в коде сайта!');
+                return;
+            }
+
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'ОТПРАВКА...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const data = new URLSearchParams(formData);
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: data.toString()
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    Array.from(form.children).forEach(child => {
+                        if(child.id !== 'success-message') child.style.display = 'none';
+                    });
+                    successMessage.classList.remove('hidden');
+                } else throw new Error('Network error');
+            } catch (error) {
+                alert('Произошла ошибка. Пожалуйста, попробуйте позже.');
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
+
+
