@@ -99,9 +99,9 @@
     <nav class="fixed w-full z-50 mix-blend-difference py-6 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
             
-            <!-- ЛОГОТИП -->
+            <!-- ЛОГОТИП (УВЕЛИЧЕН) -->
             <div class="cursor-pointer flex items-center relative z-50" onclick="window.scrollTo(0,0)">
-                <img src="1786336017711.png" alt="MEL Logo" class="h-10 md:h-12 w-auto invert contrast-125 mix-blend-screen opacity-90 hover:opacity-100 transition-opacity">
+                <img src="1786336017711.png" alt="MEL Logo" class="h-16 md:h-20 w-auto invert contrast-125 mix-blend-screen opacity-90 hover:opacity-100 transition-opacity">
             </div>
 
             <!-- Меню для ПК -->
@@ -119,8 +119,7 @@
         </div>
     </nav>
 
-    <!-- ПОЛНОЭКРАННОЕ МОБИЛЬНОЕ МЕНЮ (ИСПРАВЛЕНО) -->
-    <!-- flex изначально добавлен, скрытие работает через opacity и pointer-events -->
+    <!-- ПОЛНОЭКРАННОЕ МОБИЛЬНОЕ МЕНЮ -->
     <div id="mobile-menu" class="fixed inset-0 bg-brand-black/95 backdrop-blur-lg z-40 flex flex-col items-center justify-center space-y-10 opacity-0 pointer-events-none transition-all duration-300">
         <a href="#portfolio" class="mobile-link text-lg uppercase tracking-[0.4em] text-white/70 hover:text-white transition duration-500 font-sans">Портфолио</a>
         <a href="#services" class="mobile-link text-lg uppercase tracking-[0.4em] text-white/70 hover:text-white transition duration-500 font-sans">Услуги</a>
@@ -331,9 +330,10 @@
     <footer class="bg-brand-black py-16 border-t border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-12 md:gap-6">
             
-            <div class="flex flex-col items-center md:items-start gap-5">
-                <img src="1786361107645.png" alt="Фамильная подпись" class="h-28 object-contain opacity-80 hover:opacity-100 transition duration-500 brightness-75 hover:brightness-100 sepia-[.2] rounded shadow-2xl mix-blend-screen">
-                <span class="text-brand-light/40 text-[10px] uppercase tracking-[0.3em] font-sans">Фамильная фотостудия</span>
+            <!-- ПОДПИСЬ В ПОДВАЛЕ (УВЕЛИЧЕНА) -->
+            <div class="flex flex-col items-center md:items-start gap-5 w-full md:w-auto">
+                <img src="1786361107645.png" alt="Фамильная подпись" class="w-64 md:w-96 h-auto object-contain opacity-80 hover:opacity-100 transition duration-500 brightness-75 hover:brightness-100 sepia-[.2] rounded shadow-2xl mix-blend-screen mx-auto md:mx-0">
+                <span class="text-brand-light/40 text-[10px] uppercase tracking-[0.3em] font-sans text-center md:text-left">Фамильная фотостудия</span>
             </div>
 
             <div class="flex flex-col items-center md:items-end gap-4">
@@ -345,7 +345,7 @@
                     <span class="text-[10px] uppercase tracking-[0.2em] font-sans">+7 995 832 56 71</span>
                     <i data-lucide="phone" class="w-4 h-4"></i>
                 </a>
-                <p class="text-brand-light/20 text-[9px] uppercase tracking-[0.3em] font-sans mt-4">
+                <p class="text-brand-light/20 text-[9px] uppercase tracking-[0.3em] font-sans mt-4 text-center md:text-right">
                     © 2024 Елизавета Метлина. Самара.
                 </p>
             </div>
@@ -357,7 +357,7 @@
         // Инициализация иконок при первой загрузке
         lucide.createIcons();
 
-        // --- ЛОГИКА МОБИЛЬНОГО МЕНЮ (ИСПРАВЛЕННАЯ) ---
+        // --- ЛОГИКА МОБИЛЬНОГО МЕНЮ ---
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -371,7 +371,7 @@
                 mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
                 mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
                 
-                // ВАЖНО: Заменяем HTML кнопки целиком, чтобы не было ошибки null
+                // ВАЖНО: Заменяем HTML кнопки целиком
                 mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
                 
                 // Блокируем скролл фона
@@ -399,7 +399,6 @@
                 if (isMenuOpen) toggleMenu();
             });
         });
-
 
         // --- ПАРАЛЛАКС ЭФФЕКТ ДЛЯ ФОНА ---
         const parallaxBg = document.getElementById('parallax-bg');
