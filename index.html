@@ -6,7 +6,6 @@
     <meta name="description" content="Елизавета Метлина — профессиональный фотограф в Самаре. Сохраняю неуловимое: журнальная, фэшн и портретная фотография.">
     <title>Елизавета Метлина | Фотограф Самара</title>
     <link rel="canonical" href="https://metlinastudio-lab.github.io/psyatenka/">
-    <!-- В качестве фавикона (иконки вкладки) используем логотип. Это уровень 150. -->
     <link rel="icon" type="image/png" href="1786361107645.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -53,19 +52,6 @@
             color: #050505;
         }
 
-        /* --- НОВОЕ: ПРОГРАММИСТ 150 УРОВНЯ. ОПТИМИЗИРОВАННЫЙ ЛЕНИВЫЙ ФОН --- */
-        .main-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            object-fit: cover;
-            object-position: center;
-            pointer-events: none;
-        }
-
         /* --- ПАРАЛЛАКС ФОН --- */
         #parallax-bg {
             position: fixed;
@@ -79,6 +65,16 @@
             background-repeat: repeat;
             background-size: 150px;
             transition: transform 0.1s linear; 
+        }
+
+        /* Журнальный стиль для Hero-секции */
+        .hero-bg {
+            background-image: 
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 1)),
+                url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            background-attachment: fixed;
         }
 
         /* Эффекты портфолио */
@@ -100,9 +96,6 @@
 </head>
 <body class="selection:bg-brand-accent selection:text-brand-black">
 
-    <!-- --- НОВОЕ: ПРОГРАММИСТ 150 УРОВНЯ. ОПТИМИЗИРОВАННЫЙ ЛЕНИВЫЙ ФОН --- -->
-    <img src="1786511533492.png" alt="Фоновое изображение" class="main-background" loading="lazy">
-
     <!-- ПАРАЛЛАКС ФОН -->
     <div id="parallax-bg"></div>
 
@@ -110,9 +103,9 @@
     <header id="navbar" class="fixed w-full z-50 mix-blend-difference py-6 transition-all duration-300">
         <nav class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
             
-            <!-- ЛОГОТИП (ОБНОВЛЕН И УВЕЛИЧЕН) -->
+            <!-- ЛОГОТИП (СЮДА ВЕРНУЛ НОВЫЙ ФАЙЛ MEL) -->
             <a href="#" class="cursor-pointer flex items-center relative z-50 overflow-visible" onclick="window.scrollTo(0,0)">
-                <img src="1786361107645.png" alt="MEL Logo" class="h-16 md:h-20 w-auto transform scale-125 md:scale-150 origin-left invert contrast-125 mix-blend-screen opacity-90 hover:opacity-100 transition-opacity">
+                <img src="1786511533492.png" alt="MEL Logo" class="h-16 md:h-24 w-auto object-contain invert contrast-125 mix-blend-screen opacity-90 hover:opacity-100 transition-opacity">
             </a>
 
             <!-- Меню для ПК -->
@@ -130,7 +123,7 @@
         </nav>
     </header>
 
-    <!-- ПОЛНОЭКРАННОЕ МОБИЛЬНОЕ МЕНЮ (ИСПРАВЛЕНО) -->
+    <!-- ПОЛНОЭКРАННОЕ МОБИЛЬНОЕ МЕНЮ -->
     <div id="mobile-menu" class="fixed inset-0 bg-brand-black/95 backdrop-blur-lg z-40 flex flex-col items-center justify-center space-y-10 opacity-0 pointer-events-none transition-all duration-300">
         <a href="#portfolio" class="mobile-link text-lg uppercase tracking-[0.4em] text-white/70 hover:text-white transition duration-500 font-sans">Портфолио</a>
         <a href="#services" class="mobile-link text-lg uppercase tracking-[0.4em] text-white/70 hover:text-white transition duration-500 font-sans">Услуги</a>
@@ -140,9 +133,8 @@
 
     <!-- Главный контент -->
     <main>
-        <!-- Главный экран -->
-        <!-- НОВОЕ: Режим 150 уровня. Hero-секция теперь прозрачная, чтобы фон просвечивал -->
-        <section class="h-screen flex flex-col justify-end pb-24 md:pb-32 relative bg-transparent">
+        <!-- Главный экран с фото на фоне -->
+        <section class="hero-bg h-screen flex flex-col justify-end pb-24 md:pb-32 relative">
             <div class="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
                 <div>
                     <p class="text-[10px] md:text-xs tracking-[0.4em] uppercase mb-4 md:mb-6 font-sans text-brand-accent/80">Фотограф • Самара</p>
@@ -345,7 +337,7 @@
     <footer class="bg-brand-black py-16 border-t border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-12 md:gap-6">
             
-            <!-- НОВОЕ: ПОДПИСЬ В ПОДВАЛЕ (ОБНОВЛЕНА И УВЕЛИЧЕНА) -->
+            <!-- ПОДПИСЬ В ПОДВАЛЕ (ВЕРНУЛ СТАРУЮ) -->
             <div class="flex flex-col items-center md:items-start gap-5 w-full md:w-auto">
                 <img src="1786361107645.png" alt="Фамильная подпись" class="w-80 md:w-[400px] h-auto object-contain opacity-80 hover:opacity-100 transition duration-500 brightness-75 hover:brightness-100 sepia-[.2] rounded shadow-2xl mix-blend-screen mx-auto md:mx-0" loading="lazy">
                 <span class="text-brand-light/40 text-[10px] uppercase tracking-[0.3em] font-sans text-center md:text-left">Фамильная фотостудия</span>
@@ -460,8 +452,7 @@
         }, { passive: true });
 
         // 3. ОТПРАВКА ФОРМЫ (Google Scripts)
-        // ПРЕДУПРЕЖДЕНИЕ: Эта функция требует настройки Google Script.
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/ВАШ_ИДЕНТИФИКАТОР/exec'; // ЗАМЕНИТЕ ЭТО
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/ВАШ_ИДЕНТИФИКАТОР/exec'; 
         const form = document.getElementById('tg-form');
         const submitBtn = document.getElementById('submit-btn');
         const successMessage = document.getElementById('success-message');
